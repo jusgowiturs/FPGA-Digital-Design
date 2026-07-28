@@ -193,3 +193,20 @@ The script performs:
 5. Programs the Tang Nano 4K FPGA using openFPGALoader.
 
 > **Note:** The argument (`counter`) should match the Verilog source filename (`counter.v`) and the top-level module name (`module counter`).
+
+
+# Next Development Steps
+
+This project can be extended with reusable FPGA modules:
+
+- Clock divider
+- Reset synchronizer
+- Timer
+- GPIO
+- UART
+- PWM
+- SPI
+- I2C
+- Register interface
+
+The goal is to gradually build a reusable FPGA hardware framework.
