@@ -157,6 +157,100 @@ counter.fs
 ---
 
 ## 4. Program the Tang Nano 4K FPGA
+## 4.1  Programming FPGA from WSL
+
+When using **WSL (Windows Subsystem for Linux)**, USB devices are not automatically available inside Linux.  
+The Tang Nano 4K programmer USB interface must first be attached to WSL using `usbipd`.
+
+#### 4.1.1. Open Windows PowerShell (Administrator)
+
+List available USB devices:
+
+```powershell
+usbipd list
+```
+
+Example output:
+
+```text
+BUSID   VID:PID    DEVICE
+1-1     0403:6010  USB Serial Converter
+```
+
+Identify the Tang Nano 4K USB device and note the `BUSID`.
+
+---
+
+#### 4.1.2. Bind the USB Device
+
+Attach the USB device for WSL access:
+
+```powershell
+usbipd bind --busid <BusID>
+```
+
+Example:
+
+```powershell
+usbipd bind --busid 1-1
+```
+
+---
+
+#### 4.1.3. Attach the Device to WSL
+
+From PowerShell:
+
+```powershell
+usbipd attach --wsl --busid <BusID>
+```
+
+Example:
+
+```powershell
+usbipd attach --wsl --busid 1-1
+```
+
+---
+
+#### 4.1.4. Verify USB Access in WSL
+
+Inside the WSL terminal:
+
+```bash
+lsusb
+```
+
+The Tang Nano programmer should appear in the USB device list.
+
+---
+
+#### 4.1.5. Program the FPGA
+
+Run the normal openFPGALoader command:
+
+```bash
+sudo $OSS_DIR/bin/openFPGALoader \
+    -b tangnano4k \
+    counter.fs
+```
+
+---
+
+## Notes for WSL Users
+
+- The USB device must be attached every time WSL starts.
+- If programming fails, check the USB connection using:
+
+```bash
+lsusb
+```
+
+- If the device is still attached to Windows, detach it before using it in WSL:
+
+```powershell
+usbipd detach --busid <BusID>
+```
 
 Use openFPGALoader to program the FPGA with the generated flash stream.
 
