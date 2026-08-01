@@ -12,7 +12,7 @@ always @(posedge sys_clk or negedge sys_rst_n) begin
         ledreg  <= 1'b0;
     end
     else begin
-        if (counter == 32'd100000000-1) begin
+        if (counter == 32'd100000000-2) begin
             counter <= 32'd0;
             ledreg <= ~ledreg;   // Toggle LED
         end
