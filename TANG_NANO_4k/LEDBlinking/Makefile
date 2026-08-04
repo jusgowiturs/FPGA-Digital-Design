@@ -50,6 +50,7 @@ GTKWAVE     := gtkwave
 SRC_DIR     := src
 CST_DIR     := constraints
 SIM_DIR     := sim
+SYNTH_DIR := synthesis
 IMPL_DIR    := impl
 RUN_DIR     := run
 
@@ -57,7 +58,7 @@ RUN_DIR     := run
 # Source Files
 #----------------------------------------------------
 SRC          := $(SRC_DIR)/$(MODULE).v
-TB           := $(SRC_DIR)/$(MODULE)_tb.v
+TB           := $(SIM_DIR)/$(MODULE)_tb.v
 CST          := $(CST_DIR)/tangnano4k.cst
 
 #----------------------------------------------------
@@ -66,7 +67,7 @@ CST          := $(CST_DIR)/tangnano4k.cst
 SIM_EXE      := $(SIM_DIR)/$(MODULE).out
 VCD          := $(SIM_DIR)/$(MODULE).vcd
 
-JSON         := $(IMPL_DIR)/$(MODULE).json
+JSON         := $(SYNTH_DIR)/$(MODULE).json
 PNR_JSON     := $(IMPL_DIR)/$(MODULE)_pnr.json
 
 BITSTREAM    := $(RUN_DIR)/$(MODULE).fs
@@ -91,6 +92,9 @@ all: bitstream
 # Create output directories
 #----------------------------------------------------
 $(SIM_DIR):
+	mkdir -p $@
+
+$(SYNTH_DIR):
 	mkdir -p $@
 
 $(IMPL_DIR):
@@ -141,7 +145,7 @@ showwave: simulate
 #----------------------------------------------------
 synthesis: $(JSON)
 
-$(JSON): $(SRC) | $(IMPL_DIR)
+$(JSON): $(SRC) | $(SYNTH_DIR)
 	$(YOSYS) -p "read_verilog $<; synth_gowin -top $(MODULE) -json $@"
 
 #----------------------------------------------------
@@ -178,4 +182,8 @@ program: bitstream
 # Clean Generated Files
 #----------------------------------------------------
 clean:
-	rm -rf $(SIM_DIR) $(IMPL_DIR) $(RUN_DIR)
+	rm -f $(SIM_DIR)/*.out
+	rm -f $(SIM_DIR)/*.vcd
+	rm -f $(SYNTH_DIR)/*
+	rm -f $(IMPL_DIR)/*
+	rm -f $(RUN_DIR)/*

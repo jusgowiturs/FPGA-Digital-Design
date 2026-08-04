@@ -22,7 +22,7 @@ sudo apt install -y wget python3 python3-pip libftdi1-2 libusb-1.0-0
 
 ---
 
-## 2. Download OSS CAD Suite
+## 2. Download Precompiled OSS CAD Suite
 
 Move to your home directory:
 
@@ -30,9 +30,9 @@ Move to your home directory:
 cd ~
 ```
 
-Download the latest stable OSS CAD Suite release from:
+Download the latest stable [OSS CAD Suite](https://github.com/YosysHQ/oss-cad-suite-build/releases) release from:
 
-https://github.com/YosysHQ/oss-cad-suite-build
+
 
 Example:
 
