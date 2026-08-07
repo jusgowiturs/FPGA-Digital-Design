@@ -31,7 +31,7 @@ OSS_CAD_Suite/
 *.dcp
 
 # Yosys generated files
-*.json
+#*.json
 
 
 # ------------------------------------------------------------
@@ -43,7 +43,6 @@ OSS_CAD_Suite/
 .ip_user_files/
 .runs/
 .gen/
-.sim/
 .build/
 .vivado/
 
