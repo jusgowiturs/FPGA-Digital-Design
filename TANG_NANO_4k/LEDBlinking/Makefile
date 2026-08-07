@@ -125,7 +125,7 @@ check:
 #----------------------------------------------------
 # Simulation
 #----------------------------------------------------
-simulate: $(SIM_EXE)
+simulation: $(SIM_EXE)
 	$(VVP) $(SIM_EXE)
 
 $(SIM_EXE): $(SRC) $(TB) | $(SIM_DIR)
