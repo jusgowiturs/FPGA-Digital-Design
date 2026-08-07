@@ -3,7 +3,7 @@
 #----------------------------------------------------
 
 # Default module (override using: make MODULE=uart_tx simulation)
-MODULE ?= baud_generate
+MODULE ?= top
 
 #----------------------------------------------------
 # OSS CAD Suite
