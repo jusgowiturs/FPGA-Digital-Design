@@ -14,13 +14,13 @@
 
 # Top module name (can be overridden)
 # Example:
-#   make MODULE=counter
-MODULE ?= counter
+#   make MODULE=clock_divisor
+MODULE ?= clock_divisor
 
 #----------------------------------------------------
 # OSS CAD Suite
 #----------------------------------------------------
-OSS_DIR := $(HOME)/FPGA-Digital-Design/TANG_NANO_4k/OSS_CAD_Suite/oss-cad-suite
+OSS_DIR := $(HOME)/oss-cad-suite
 
 #----------------------------------------------------
 # Target FPGA
@@ -138,12 +138,18 @@ showwave: simulation
 	$(GTKWAVE) $(VCD)
 
 #----------------------------------------------------
-# Synthesis (Yosys)
+# Synthesis (Generate JSON Netlist)
 #----------------------------------------------------
 synthesis: $(JSON)
 
 $(JSON): $(SRC) | $(IMPL_DIR)
 	$(YOSYS) -p "read_verilog $<; synth_gowin -top $(MODULE) -json $@"
+
+#----------------------------------------------------
+# View Synthesized Netlist (Gate-Level Schematic)
+#----------------------------------------------------
+netlist: synthesis
+	$(YOSYS) -p "read_json $(JSON); show -format svg -prefix $(IMPL_DIR)/$(MODULE)_netlist"
 
 #----------------------------------------------------
 # Implementation (Place & Route)
