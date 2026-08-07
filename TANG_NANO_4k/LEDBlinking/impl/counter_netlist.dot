@@ -1,0 +1,22 @@
+digraph "counter" {
+label="counter";
+rankdir="LR";
+remincross=true;
+n1 [ shape=diamond, label="ledreg", color="black", fontcolor="black"];
+n2 [ shape=diamond, label="sys_clk_IBUF_I_O", color="black", fontcolor="black"];
+n3 [ shape=diamond, label="sys_rst_n_IBUF_I_O", color="black", fontcolor="black"];
+n4 [ shape=octagon, label="led", color="black", fontcolor="black"];
+n5 [ shape=octagon, label="sys_rst_n", color="black", fontcolor="black"];
+n6 [ shape=octagon, label="sys_clk", color="black", fontcolor="black"];
+c9 [ shape=record, label="{{<p7> I}|led_OBUF_O\nOBUF|{<p8> O}}",  ];
+c11 [ shape=record, label="{{}|ledreg_GND_G\nGND|{<p10> G}}",  ];
+c12 [ shape=record, label="{{<p7> I}|sys_clk_IBUF_I\nIBUF|{<p8> O}}",  ];
+c13 [ shape=record, label="{{<p7> I}|sys_rst_n_IBUF_I\nIBUF|{<p8> O}}",  ];
+c11:p10:e -> n1:w [color="black", fontcolor="black", label=""];
+n1:e -> c9:p7:w [color="black", fontcolor="black", label=""];
+c12:p8:e -> n2:w [color="black", fontcolor="black", label=""];
+c13:p8:e -> n3:w [color="black", fontcolor="black", label=""];
+c9:p8:e -> n4:w [color="black", fontcolor="black", label=""];
+n5:e -> c13:p7:w [color="black", fontcolor="black", label=""];
+n6:e -> c12:p7:w [color="black", fontcolor="black", label=""];
+}

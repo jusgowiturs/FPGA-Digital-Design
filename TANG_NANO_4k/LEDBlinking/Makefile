@@ -49,8 +49,8 @@ GTKWAVE     := gtkwave
 #----------------------------------------------------
 SRC_DIR     := src
 CST_DIR     := constraints
+
 SIM_DIR     := sim
-SYNTH_DIR := synthesis
 IMPL_DIR    := impl
 RUN_DIR     := run
 
@@ -67,7 +67,7 @@ CST          := $(CST_DIR)/tangnano4k.cst
 SIM_EXE      := $(SIM_DIR)/$(MODULE).out
 VCD          := $(SIM_DIR)/$(MODULE).vcd
 
-JSON         := $(SYNTH_DIR)/$(MODULE).json
+JSON         := $(IMPL_DIR)/$(MODULE).json
 PNR_JSON     := $(IMPL_DIR)/$(MODULE)_pnr.json
 
 BITSTREAM    := $(RUN_DIR)/$(MODULE).fs
@@ -77,7 +77,7 @@ BITSTREAM    := $(RUN_DIR)/$(MODULE).fs
 #----------------------------------------------------
 .PHONY: all \
 	check \
-	simulate \
+	simulation \
 	showwave \
 	synthesis \
 	implementation \
@@ -92,9 +92,6 @@ all: bitstream
 # Create output directories
 #----------------------------------------------------
 $(SIM_DIR):
-	mkdir -p $@
-
-$(SYNTH_DIR):
 	mkdir -p $@
 
 $(IMPL_DIR):
@@ -137,16 +134,22 @@ $(SIM_EXE): $(SRC) $(TB) | $(SIM_DIR)
 #----------------------------------------------------
 # View Waveform
 #----------------------------------------------------
-showwave: simulate
+showwave: simulation
 	$(GTKWAVE) $(VCD)
 
 #----------------------------------------------------
-# Synthesis (Yosys)
+# Synthesis (Generate JSON Netlist)
 #----------------------------------------------------
 synthesis: $(JSON)
 
-$(JSON): $(SRC) | $(SYNTH_DIR)
+$(JSON): $(SRC) | $(IMPL_DIR)
 	$(YOSYS) -p "read_verilog $<; synth_gowin -top $(MODULE) -json $@"
+
+#----------------------------------------------------
+# View Synthesized Netlist (Gate-Level Schematic)
+#----------------------------------------------------
+netlist: synthesis
+	$(YOSYS) -p "read_json $(JSON); show -format svg -prefix $(IMPL_DIR)/$(MODULE)_netlist"
 
 #----------------------------------------------------
 # Implementation (Place & Route)
@@ -182,8 +185,4 @@ program: bitstream
 # Clean Generated Files
 #----------------------------------------------------
 clean:
-	rm -f $(SIM_DIR)/*.out
-	rm -f $(SIM_DIR)/*.vcd
-	rm -f $(SYNTH_DIR)/*
-	rm -f $(IMPL_DIR)/*
-	rm -f $(RUN_DIR)/*
+	rm -rf $(SIM_DIR) $(IMPL_DIR) $(RUN_DIR)
