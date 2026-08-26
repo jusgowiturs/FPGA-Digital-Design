@@ -1,12 +1,9 @@
 `timescale 1ns/1ps
 
 module top(
-
     input  wire clk,
     input  wire rst_n,
-
     output wire tx
-
 );
 
 reg [7:0] rom_addr;
