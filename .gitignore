@@ -111,3 +111,23 @@ __pycache__/
 
 .DS_Store
 Thumbs.db
+
+
+
+
+# Simulation outputs
+sim/*.out
+sim/*.vcd
+
+# Generated synthesis outputs
+synthesis/
+*_netlist.json
+*_netlist.dot
+*_netlist.svg
+
+# Generated place-and-route outputs
+impl/
+*_pnr.json
+
+# Generated bitstreams and build outputs
+run/
