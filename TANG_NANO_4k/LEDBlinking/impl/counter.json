@@ -18377,7 +18377,7 @@
     "counter": {
       "attributes": {
         "top": "00000000000000000000000000000001",
-        "src": "src/counter.v:1.1-26.10"
+        "src": "src/counter.v:1.5-26.14"
       },
       "ports": {
         "sys_clk": {
@@ -18465,21 +18465,21 @@
           "hide_name": 0,
           "bits": [ 4 ],
           "attributes": {
-            "src": "src/counter.v:4.18-4.21"
+            "src": "src/counter.v:4.22-4.25"
           }
         },
         "ledreg": {
           "hide_name": 0,
           "bits": [ 5 ],
           "attributes": {
-            "src": "src/counter.v:8.6-8.12"
+            "src": "src/counter.v:8.10-8.16"
           }
         },
         "sys_clk": {
           "hide_name": 0,
           "bits": [ 2 ],
           "attributes": {
-            "src": "src/counter.v:2.13-2.20"
+            "src": "src/counter.v:2.17-2.24"
           }
         },
         "sys_clk_IBUF_I_O": {
@@ -18493,7 +18493,7 @@
           "hide_name": 0,
           "bits": [ 3 ],
           "attributes": {
-            "src": "src/counter.v:3.13-3.22"
+            "src": "src/counter.v:3.17-3.26"
           }
         },
         "sys_rst_n_IBUF_I_O": {

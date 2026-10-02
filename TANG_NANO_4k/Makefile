@@ -9,6 +9,32 @@
 #   make synthesis MODULE=counter
 #   make implementation MODULE=counter
 #   make bitstream MODULE=counter
+The script performs:
+
+1. Removes previously generated build files.
+2. Runs Verilog synthesis using Yosys.
+3. Performs place and route using nextpnr.
+4. Generates the `.fs` bitstream using gowin_pack.
+5. Programs the Tang Nano 4K FPGA using openFPGALoader.
+
+> **Note:** The argument (`counter`) should match the Verilog source filename (`counter.v`) and the top-level module name (`module counter`).
+
+
+# Next Development Steps
+
+This project can be extended with reusable FPGA modules:
+
+- Clock divider
+- Reset synchronizer
+- Timer
+- GPIO
+- UART
+- PWM
+- SPI
+- I2C
+- Register interface
+
+The goal is to gradually build a reusable FPGA hardware framework.
 #   make program MODULE=counter
 #   make clean
 #
@@ -23,7 +49,7 @@ MODULE ?= counter
 # Uses environment variable if defined.
 # Otherwise defaults to $HOME/oss-cad-suite
 
-OSS_DIR ?= $(HOME)/oss-cad-suite
+OSS_DIR ?= /home/jusgowiturs/oss-cad-suite
 
 #----------------------------------------------------
 # FPGA Device
@@ -61,7 +87,7 @@ RUN_DIR         := run
 # Source Files
 #----------------------------------------------------
 SRC := $(SRC_DIR)/$(MODULE).v
-TB  := $(SRC_DIR)/$(MODULE)_tb.v
+TB  := $(SIM_DIR)/$(MODULE)_tb.v
 CST := $(CONSTRAINT_DIR)/tangnano4k.cst
 
 #----------------------------------------------------
