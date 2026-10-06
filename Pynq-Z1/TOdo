@@ -1,0 +1,18 @@
+Reference blog
+https://hackmd.io/@ween168/SyNPIkUb1x
+
+# PYNQ Tutorial 1: Board Setup and GPIO
+https://hackmd.io/@ween168/SyNPIkUb1x
+# PYNQ Tutorial 2: DMA and Custom IP
+https://hackmd.io/@ween168/r1VchK_Zyg
+# PYNQ Tutorial 3: Block Memory and Custom IP
+https://hackmd.io/@ween168/rkZnpSxfkl#PYNQ-Tutorial-3-Block-Memory-and-Custom-IP
+# PYNQ Tutorial 4: Neural Network Processor
+https://hackmd.io/@ween168/SyoWdqWMke
+
+
+# Vivado Board Files and  XDC Constraints file for Pynq Z1 and Z2
+https://pynq.readthedocs.io/en/v2.6.1/overlay_design_methodology/board_settings.html
+
+# Pyn2 board JTAG along with hdmi 
+https://www.hackster.io/s91143621027/pynq-z2-hdmi-usage-2-hdmi-passthrough-227599
