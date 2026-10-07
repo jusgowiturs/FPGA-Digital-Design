@@ -178,3 +178,13 @@ DDR
 axi_rgb_channelizer.v
 rgb2gray.v
 ```
+
+
+| # | Implementation | Suitable Title | Wall Time |
+|---|---|---|---:|
+| **1** | **RTL + AXI DMA** | **Hardware – RTL RGB-to-Grayscale with AXI DMA** | **10.5 ms** |
+| **2** | **NumPy `dot()`** | **Software – NumPy Floating-Point RGB-to-Grayscale** | **117 ms** |
+| **3** | **Software fixed-point expression** | **Software – RTL-Matched Fixed-Point RGB-to-Grayscale** | **51.2 ms** |
+
+
+`
